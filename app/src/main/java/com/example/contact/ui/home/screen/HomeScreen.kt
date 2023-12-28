@@ -78,7 +78,9 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier){
 @Composable
 fun KontakLayout(
     kontak: List<Kontak>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDetailClick: (Kontak) -> Unit,
+
 ){
     LazyColumn(
         modifier = modifier,
