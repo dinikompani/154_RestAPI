@@ -33,8 +33,12 @@ import com.example.contact.model.Kontak
 import com.example.contact.ui.home.viewmodel.KontakUIState
 
 @Composable
-fun HomeScreen(
-    kontakUIState: KontakUIState, retryAction: () -> Unit, modifier: Modifier = Modifier
+fun HomeStatus(
+    kontakUIState: KontakUIState,
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier,
+    onDeleteClick: (Kontak) -> Unit = {},
+    onDetailClick: (Int) -> Unit
 ) {
 
     when (kontakUIState) {
