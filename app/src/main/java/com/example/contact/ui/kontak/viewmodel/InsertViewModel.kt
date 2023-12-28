@@ -4,7 +4,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.contact.repository.KontakRepository
+import kotlinx.coroutines.launch
 
 class InsertViewModel (private val kontakRepository: KontakRepository) : ViewModel() {
 
@@ -13,5 +15,15 @@ class InsertViewModel (private val kontakRepository: KontakRepository) : ViewMod
 
     fun updateInsertKontakState(insertUiEvent: InsertUiEvent) {
         insertKontakState = InserUiState(insertUiEvent = insertUiEvent)
+    }
+
+    suspend fun insertKontak() {
+        viewModelScope.launch {
+            try {
+                kontakRepository.insertKontak(insertKontakState.insertUiEvent.tokontak())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 }
