@@ -31,3 +31,10 @@ class InsertViewModel (private val kontakRepository: KontakRepository) : ViewMod
 data class InsertUiState(
     val insertUiEvent: InsertUiEvent = InsertEvent(),
 )
+
+data class  InsertUiEvent(
+    val id: Int = 0,
+    val nama: String = "",
+    val nohp: String = "",
+    val alamat: String = "",
+)
