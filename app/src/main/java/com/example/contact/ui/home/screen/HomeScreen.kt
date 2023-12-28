@@ -89,9 +89,15 @@ fun KontakLayout(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(kontak) { kontak ->
-            KontakCard(kontak = kontak, modifier = Modifier
-                .fillMaxWidth()
-                .clickable { })
+            KontakCard(
+                kontak = kontak,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onDetailClick(kontak) },
+                onDeleteClick = {
+                    onDeleteClick(kontak)
+                }
+            )
         }
     }
 }
