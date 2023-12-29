@@ -15,13 +15,13 @@ class InsertViewModel (private val kontakRepository: KontakRepository) : ViewMod
         private set
 
     fun updateInsertKontakState(insertUiEvent: InsertUiEvent) {
-        insertKontakState = InserUiState(insertUiEvent = insertUiEvent)
+        insertKontakState = InsertUiState(insertUiEvent = insertUiEvent)
     }
 
     suspend fun insertKontak() {
         viewModelScope.launch {
             try {
-                kontakRepository.insertKontak(insertKontakState.insertUiEvent.tokontak())
+                kontakRepository.insertKontak(insertKontakState.insertUiEvent.toKontak())
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -30,7 +30,7 @@ class InsertViewModel (private val kontakRepository: KontakRepository) : ViewMod
 }
 
 data class InsertUiState(
-    val insertUiEvent: InsertUiEvent = InsertEvent(),
+    val insertUiEvent: InsertUiEvent = InsertUiEvent(),
 )
 
 data class  InsertUiEvent(
@@ -55,6 +55,6 @@ fun Kontak.toUiStateKontak(): InsertUiState = InsertUiState(
 fun Kontak.toInsertUiEvent(): InsertUiEvent = InsertUiEvent(
     id = id,
     nama = nama,
-    nohp = nohp
+    nohp = nohp,
     alamat = alamat,
 )
